@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Canon PIXMA G3770",
+    "model": "PIXMA G3770",
+    "category": "Ink Tank",
+    "description": "Wireless refillable ink-tank all-in-one printer for print, scan and copy.",
+    "price": 16500,
+    "image_url": "https://shop.in.canon/media/catalog/product/g/3/g3770_black_1.png",
+    "stock": 8
+  },
+  {
+    "id": 2,
+    "name": "Canon PIXMA E477",
+    "model": "PIXMA E477",
+    "category": "Inkjet",
+    "description": "Compact wireless all-in-one printer for everyday home printing.",
+    "price": 6990,
+    "image_url": "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80",
+    "stock": 12
+  },
+  {
+    "id": 3,
+    "name": "Canon imageCLASS LBP6030B",
+    "model": "LBP6030B",
+    "category": "Laser",
+    "description": "Compact monochrome laser printer for home offices and small businesses.",
+    "price": 14295,
+    "image_url": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?auto=format&fit=crop&w=800&q=80",
+    "stock": 6
+  },
+  {
+    "id": 4,
+    "name": "Canon imageCLASS LBP122dw",
+    "model": "LBP122dw",
+    "category": "Laser",
+    "description": "Wireless monochrome laser printer with duplex printing for small offices.",
+    "price": 22495,
+    "image_url": "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80",
+    "stock": 4
+  },
+  {
+    "id": 5,
+    "name": "Canon MAXIFY GX2070",
+    "model": "MAXIFY GX2070",
+    "category": "Business Ink Tank",
+    "description": "Business-focused refillable ink-tank multifunction printer.",
+    "price": 24999,
+    "image_url": "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?auto=format&fit=crop&w=800&q=80",
+    "stock": 5
+  },
+  {
+    "id": 6,
+    "name": "Canon PIXMA TS4070",
+    "model": "PIXMA TS4070",
+    "category": "Inkjet",
+    "description": "Everyday colour printing for documents and photos.",
+    "price": 8990,
+    "image_url": "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80",
+    "stock": 10
+  }
+]

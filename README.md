@@ -10,6 +10,9 @@ Responsive printer store with product catalog/search/filtering, product details,
 5. Run `npm install`, then `npm start`.
 6. Open http://localhost:3000.
 
+## GitHub Pages
+GitHub Pages is a static host and cannot run the Node.js server or SQLite database. The storefront loads its sample catalog from `products.json`, so browsing, filtering, and the cart work on a static deployment. Sign-in, orders, admin tools, and payments require deploying the Node.js backend to a server and configuring its URL and payment credentials.
+
 ## Razorpay live payments
 A verified merchant account is required. Add your own credentials to `.env`:
 ```

@@ -8,6 +8,9 @@ const $ = (s) => document.querySelector(s),
     }).format(n);
 const state = {
   products: [],
+  catalog: null,
+  apiAvailable: true,
+  loadRequest: 0,
   category: "All",
   search: "",
   cart: JSON.parse(localStorage.getItem("cpp-cart") || "[]"),
@@ -49,14 +52,48 @@ function updateUser() {
   $("#admin-open").classList.toggle("hidden", state.user?.role !== "admin");
 }
 async function load() {
+  const request = ++state.loadRequest;
+  let catalog = state.catalog;
+  try {
+    if (!catalog) {
+      const response = await fetch("products.json");
+      if (!response.ok) throw Error("Could not load the product catalog.");
+      catalog = await response.json();
+      state.catalog = catalog;
+    }
+  } catch {
+    catalog = null;
+  }
+  if (request !== state.loadRequest) return;
+  if (catalog) {
+    const query = state.search.toLowerCase();
+    state.products = catalog.filter(
+      (product) =>
+        (state.category === "All" || product.category === state.category) &&
+        (!query ||
+          `${product.name} ${product.model} ${product.description}`
+            .toLowerCase()
+            .includes(query)),
+    );
+    render();
+  }
+  if (!state.apiAvailable) {
+    if (!catalog) $("#product-grid").textContent = "Could not load products.";
+    return;
+  }
   try {
     let p = new URLSearchParams();
     if (state.search) p.set("q", state.search);
     if (state.category !== "All") p.set("category", state.category);
-    state.products = await api("/api/products?" + p);
+    const products = await api("/api/products?" + p);
+    if (request !== state.loadRequest) return;
+    state.apiAvailable = true;
+    state.products = products;
     render();
   } catch (e) {
-    $("#product-grid").textContent = e.message;
+    state.apiAvailable = false;
+    if (!catalog && request === state.loadRequest)
+      $("#product-grid").textContent = e.message;
   }
 }
 function render() {
