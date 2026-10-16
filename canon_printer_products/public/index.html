@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Canon Printer products</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="topline">
+      PRINTER DEALS FOR HOME, SCHOOL & BUSINESS
+      <span>Secure checkout · India</span>
+    </div>
+    <header>
+      <a class="brand" href="#"
+        ><i>C</i><span>Canon Printer <b>products</b></span></a
+      >
+      <form id="search-form">
+        <input id="search" placeholder="Search printer model or use…" /><button>
+          Search
+        </button>
+      </form>
+      <button id="account-btn" class="outline">Sign in</button
+      ><button id="cart-open" class="red">
+        Cart <span id="cart-count">0</span>
+      </button>
+    </header>
+    <nav id="categories">
+      <button class="active" data-category="All">All printers</button
+      ><button data-category="Ink Tank">Ink tank</button
+      ><button data-category="Inkjet">Inkjet</button
+      ><button data-category="Laser">Laser</button
+      ><button data-category="Business Ink Tank">Business</button
+      ><button id="admin-open" class="hidden">Admin dashboard</button>
+    </nav>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">PRINT SMARTER EVERY DAY</p>
+          <h1>Find your next<br /><em>Canon printer.</em></h1>
+          <p class="muted">
+            From everyday documents to crisp office prints, find the right
+            printer for your setup.
+          </p>
+          <a class="cta" href="#catalog">Explore printers ↘</a>
+          <p class="proof">✓ Easy ordering　 ✓ Secure payment</p>
+        </div>
+        <div class="hero-image">
+          <div class="blob"></div>
+          <img
+            src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=1000&q=85"
+            alt="Printer on a desk"
+          />
+        </div>
+      </section>
+      <section class="benefits">
+        <div>
+          ▣
+          <span
+            ><b>Home & study</b><small>Compact everyday printers</small></span
+          >
+        </div>
+        <div>
+          ◈
+          <span
+            ><b>Office ready</b><small>Reliable document printing</small></span
+          >
+        </div>
+        <div>
+          ↗
+          <span
+            ><b>Wireless options</b><small>Print with less clutter</small></span
+          >
+        </div>
+        <div>
+          ✓
+          <span
+            ><b>Secure checkout</b><small>Protected payment flow</small></span
+          >
+        </div>
+      </section>
+      <section id="catalog" class="catalog">
+        <div class="heading">
+          <div>
+            <p class="eyebrow">THE COLLECTION</p>
+            <h2>Printers for every workspace</h2>
+            <p class="muted">
+              Choose by printer type, budget and daily workload.
+            </p>
+          </div>
+          <label
+            >Sort by
+            <select id="sort">
+              <option value="featured">Featured</option>
+              <option value="low">Price: low to high</option>
+              <option value="high">Price: high to low</option>
+            </select></label
+          >
+        </div>
+        <p id="result-note" class="muted"></p>
+        <div id="product-grid" class="grid">Loading printers…</div>
+      </section>
+      <section class="band">
+        <div>
+          <p class="eyebrow">NEED HELP CHOOSING?</p>
+          <h2>Find the right printer for your work.</h2>
+          <p>Compare ink-tank, inkjet and laser options before you buy.</p>
+        </div>
+        <a href="#catalog">Compare collection →</a>
+      </section>
+    </main>
+    <footer>
+      <div class="brand">
+        <i>C</i><span>Canon Printer <b>products</b></span>
+      </div>
+      <p>
+        This is an independent storefront concept, not the official Canon
+        website. Brand names belong to their respective owners. Verify product
+        prices, stock and image rights before launch.
+      </p>
+      <small
+        >© <span id="year"></span> Canon Printer products · Privacy · Terms ·
+        Returns</small
+      >
+    </footer>
+    <div id="toast" role="status"></div>
+    <dialog id="product-dialog">
+      <button class="close" data-close="product-dialog">×</button>
+      <div id="product-detail"></div>
+    </dialog>
+    <dialog id="auth-dialog">
+      <button class="close" data-close="auth-dialog">×</button>
+      <div class="inner">
+        <p class="eyebrow">YOUR ACCOUNT</p>
+        <h2 id="auth-title">Welcome back</h2>
+        <p class="muted">Sign in to view orders and check out.</p>
+        <div class="tabs">
+          <button class="active" data-auth-mode="login">Sign in</button
+          ><button data-auth-mode="register">Create account</button>
+        </div>
+        <form id="auth-form" class="form">
+          <label id="name-wrap" class="hidden"
+            >Your name<input name="name" autocomplete="name" /></label
+          ><label>Email<input name="email" type="email" required /></label
+          ><label
+            >Password<input
+              name="password"
+              type="password"
+              minlength="8"
+              required /></label
+          ><button class="primary" id="auth-submit">Sign in</button>
+          <p id="auth-message" class="message"></p>
+        </form>
+      </div>
+    </dialog>
+    <dialog id="cart-dialog" class="side">
+      <button class="close" data-close="cart-dialog">×</button>
+      <div class="inner">
+        <p class="eyebrow">YOUR SELECTION</p>
+        <h2>Your cart</h2>
+        <div id="cart-items"></div>
+        <div class="total"><span>Subtotal</span><b id="cart-total">₹0</b></div>
+        <button id="checkout-open" class="primary wide">
+          Continue to checkout
+        </button>
+        <p class="muted small">
+          Taxes and shipping must be configured before launch.
+        </p>
+      </div>
+    </dialog>
+    <dialog id="checkout-dialog">
+      <button class="close" data-close="checkout-dialog">×</button>
+      <div class="inner">
+        <p class="eyebrow">SECURE CHECKOUT</p>
+        <h2>Delivery details</h2>
+        <form id="checkout-form" class="form">
+          <label
+            >Full name<input name="name" required autocomplete="name" /></label
+          ><label
+            >Phone number<input
+              name="phone"
+              required
+              autocomplete="tel" /></label
+          ><label
+            >Address<input
+              name="address"
+              required
+              autocomplete="street-address"
+          /></label>
+          <div class="two">
+            <label>City<input name="city" required /></label
+            ><label
+              >PIN code<input name="pincode" pattern="[0-9]{6}" required
+            /></label>
+          </div>
+          <button class="primary">Pay securely with Razorpay</button>
+          <p id="checkout-message" class="message"></p>
+        </form>
+      </div>
+    </dialog>
+    <dialog id="orders-dialog">
+      <button class="close" data-close="orders-dialog">×</button>
+      <div class="inner">
+        <p class="eyebrow">ACCOUNT</p>
+        <h2>My orders</h2>
+        <div id="orders-list"></div>
+        <button id="signout-btn" class="outline wide">Sign out</button>
+      </div>
+    </dialog>
+    <dialog id="admin-dialog" class="admin">
+      <button class="close" data-close="admin-dialog">×</button>
+      <div class="inner">
+        <p class="eyebrow">STORE MANAGEMENT</p>
+        <h2>Admin dashboard</h2>
+        <div class="tabs">
+          <button class="active" data-admin-tab="products">Products</button
+          ><button data-admin-tab="orders">Orders</button
+          ><button data-admin-tab="add">Add product</button>
+        </div>
+        <div id="admin-content"></div>
+      </div>
+    </dialog>
+  </body>
+</html>
