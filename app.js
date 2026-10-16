@@ -1,5 +1,6 @@
 const $ = (s) => document.querySelector(s),
   $$ = (s) => [...document.querySelectorAll(s)],
+  apiBaseUrl = (window.CPP_API_BASE_URL || "").replace(/\/+$/, ""),
   money = (n) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -36,7 +37,7 @@ function close(id) {
 async function api(url, opt = {}) {
   let h = { "Content-Type": "application/json", ...(opt.headers || {}) };
   if (state.token) h.Authorization = "Bearer " + state.token;
-  let r = await fetch(url, { ...opt, headers: h }),
+  let r = await fetch(apiBaseUrl + url, { ...opt, headers: h }),
     d = await r.json().catch(() => ({}));
   if (!r.ok) throw Error(d.error || "Request failed");
   return d;

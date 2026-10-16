@@ -13,6 +13,12 @@ Responsive printer store with product catalog/search/filtering, product details,
 ## GitHub Pages
 GitHub Pages is a static host and cannot run the Node.js server or SQLite database. The storefront loads its sample catalog from `products.json`, so browsing, filtering, and the cart work on a static deployment. Sign-in, orders, admin tools, and payments require deploying the Node.js backend to a server and configuring its URL and payment credentials.
 
+## Deploy the backend to Render
+1. Open the [Render Blueprint deploy page](https://render.com/deploy?repo=https://github.com/mrsabba15/canon_printer_products_fullstack) and authorize Render to access this GitHub repository.
+2. Create the `canon-printer-products-api` web service from `render.yaml` on the Free plan.
+3. Set `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, and `PUBLIC_RAZORPAY_KEY_ID` in Render's environment settings. Start with Razorpay test keys; do not put secret values in GitHub or chat.
+4. Render Free services sleep when idle and have an ephemeral filesystem. SQLite accounts, orders, stock changes, and admin-added products can be lost when the service sleeps or redeploys. Use Razorpay test keys only until persistent storage/a managed database is configured; do not accept real payments on the Free SQLite deployment.
+
 ## Razorpay live payments
 A verified merchant account is required. Add your own credentials to `.env`:
 ```
